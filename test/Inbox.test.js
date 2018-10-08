@@ -59,4 +59,10 @@ describe('smart contract', () => {
         assert.equal(message, 'Hi there');
     });
 
+    it('can change message', async () => {
+        await inbox.methods.setMessage('be happy').send({ from: accounts[0] });
+        const message = await inbox.methods.message().call();
+        assert.equal(message, 'be happy');
+    });
+
 });
